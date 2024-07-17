@@ -1,0 +1,175 @@
+# variables and data type
+string_variable = "hello world"
+
+>>> print("Hello, World!")
+Hello, World!
+
+#Variables
+#variables are created when you assign a value to it
+x = 5
+y = "Hello, World!"
+>>> print(x)
+5
+>>> print(y)
+Hello, World!
+
+"""
+Variables are containers for storing data values.
+variable can be local or global
+A variable is created the moment you first assign a value to it.
+You can get the data type of a variable with the type() function.
+A variable can have a short name (like x and y) or a more descriptive name (age, carname, total_volume).
+A variable name must start with a letter or the underscore character
+A variable name cannot start with a number
+A variable name can only contain alpha-numeric characters and underscores (A-z, 0-9, and _ )
+Variable names are case-sensitive (age, Age and AGE are three different variables)
+A variable name cannot be any of the Python keywords.
+"""
+
+#Legal variable names:
+myvar = "John"
+my_var = "John"
+_my_var = "John"
+myVar = "John"
+MYVAR = "John"
+myvar2 = "John"
+
+#Illegal variable names:
+2myvar = "John"
+my-var = "John"
+my var = "John"
+
+#Data Types
+#Variables can store data of different types
+#Numeric, Integer, Float/Decimal, String, Boolean
+
+#Print the data type of the variable x:
+x = 5
+>>> print(type(x))
+int
+x = "Hello World"
+>>> print(type(x))
+str
+x = 20.5
+>>> print(type(x))
+float
+x = True
+>>> print(type(x))
+bool
+x = 1j
+>>> print(type(x))
+complex
+
+#isinstance(object, type) method can be used to test whether any variable is a particular datatype
+#The isinstance() function returns True if the specified object is of the specified type, otherwise False.
+x=10
+name="python"
+
+isinstance(x, int)
+True
+isinstance(name, int)
+False
+OR
+
+#_class_ refer to the class or data type that the variable was defined in
+x._class_
+int
+name._class_
+str
+
+#ADDITION
+age=20
+age=age+10
+age   #30
+
+#CONCATENATION
+name="python"
+name=name+"programming"
+name     #'pythonprogramming'
+
+#TYPE CASTING
+#Type Casting is the method to convert the Python variable datatype into a certain data type in order to perform the required operation by users.
+"""
+Int(): function take float or string as an argument and returns int type object.
+float(): function take int or string as an argument and return float type object.
+str(): function takes float or int as an argument and returns string type object.
+"""
+# int variable
+a = 5 
+# typecast to float
+n = float(a)
+ 
+>>>print(n)
+>>>print(type(n))
+5
+float
+
+# float variable
+a = 5.9
+# typecast to int
+n = int(a)
+ 
+>>>print(n)
+>>>print(type(n))
+5
+int
+
+#Taking user input
+"""
+input (): This function first takes the input from the user and converts it into a string. The type of the returned object always will be <class ‘str’>.
+SYNTAX
+x = input('STATEMENT')
+"""
+
+name = input("Enter your name")
+>>>print("Your name is",name)
+Enter your namePython
+Your name is Python
+
+num1 = input("First number:")
+num2 = input("Second number:")
+num=num1+num2
+>>>print(num)
+First number:20
+Second number:30
+2030
+
+a=100
+b="200"
+"""
+Whatever you enter as input, the input function converts it into a string. 
+if you enter an integer value still input() function converts it into a string. 
+You need to explicitly convert it into an integer in your code using typecasting.
+"""
+type(num)
+str
+
+#Using Typecasting
+num1 = int(input("First number:"))
+num2 = int(input("Second number:"))
+num=num1+num2
+>>>print(num)
+First number:20
+Second number:30
+50
+
+a="100"
+b="200"
+>>>print(a+b)
+100200
+
+a=100
+b="200"
+>>>print(a+b)
+ERROR
+
+a="100"
+b=200
+a=int(a)
+>>>print(a+b)
+300
+
+a=100
+b=int("200")
+>>>print(a+b)
+300
