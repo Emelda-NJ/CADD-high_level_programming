@@ -1,0 +1,159 @@
+# String-"ATGACAGT"
+#Indexing and Slicing
+
+"""
+Slicing and indexing helps you access specific elements in a sequence, such as a list, tuple or string.
+By using these techniques, you can extract substrings from strings, filter lists, and extract columns from 2D lists.
+Indexing is the process of accessing an element in a sequence using its position in the sequence (its index).
+In Python, indexing starts from 0, which means the first element in a sequence is at position 0, the second element is at position 1, and so on.
+To access an element in a sequence, you can use square brackets [] with the index of the element you want to access.
+
+Slicing is the process of accessing a sub-sequence of a sequence by specifying a starting and ending index. In Python, you perform slicing using the colon : operator. 
+The syntax for slicing is as follows:
+sequence[start_index:end_index]
+where start_index is the index of the first element in the sub-sequence and end_index is the index of the last element in the sub-sequence (excluding the element at the end_index). 
+To slice a sequence, you can use square brackets [] with the start and end indices separated by a colon.
+You can also omit either the start_index or the end_index in a slice to get all the elements from the beginning or end of the sequence.
+"""
+
+dna_seq="ATGCCGACGATAGCAGATGACAGTAGACAGAT"
+dna_seq
+ATGCCGACGATAGCAGATGACAGTAGACAGAT
+
+length=len(dna_seq)
+>>>print(length)
+32
+
+#INDEXING
+print("Original DNA Sequence:",dna_seq)
+Original DNA Sequence: ATGCCGACGATAGCAGATGACAGTAGACAGAT
+
+Left to Right of the string is indexed from 0,1,2,3,4,---n
+Right to Left of the string is indexed from -32,-31,-30,-29,---n
+
+first_base=dna_seq[0]
+>>>print("First Base :",first_base)
+First Base : A
+
+Tenth_base=dna_seq[10]
+>>>print("Ten Base :",Tenth_base)
+Ten Base : T
+
+dna_seq[-1]
+'T'
+
+dna_seq[-5]
+'C'
+
+#SLICING
+# Syntax data[start postion:end position:interval]
+print("Original DNA Sequence:",dna_seq)
+Original DNA Sequence: ATGCCGACGATAGCAGATGACAGTAGACAGAT
+
+slice_1=dna_seq[5:10]
+slice_1
+'GACGA'
+
+slice_2=dna_seq[2:20:2]
+slice_2
+'GCAGTGAAG'
+
+slice_3=dna_seq[:10]
+slice_3
+'ATGCCGACGA'
+
+slice_4=dna_seq[10:]
+slice_4
+'TAGCAGATGACAGTAGACAGAT'
+
+#REVERSING THE SEQUENCE
+>>>print("Original DNA Sequence:",dna_seq)
+rev_seq=dna_seq[::-1]
+>>>print("Reverse DNA Sequence:",rev_seq)
+Original DNA Sequence: ATGCCGACGATAGCAGATGACAGTAGACAGAT
+Reverse DNA Sequence: TAGACAGATGACAGTAGACGATAGCAGCCGTA
+
+# Amino Acid Sequence
+data="MSYVVAIPDMLASAAADVAGIGSSVG"
+length=len(data)
+half=length/2
+half
+13.0
+
+half=int(length/2)
+half
+13
+OR
+half=length//2
+half
+13
+
+data="MSYVVAIPDMLASAAADVAGIGSSVG"
+first_half=data[:half]
+>>>print(first_half)
+MSYVVAIPDMLAS
+second_half=data[half:]
+>>>print(second_half)
+AAADVAGIGSSVG
+>>>print(first_half,second_half)
+MSYVVAIPDMLAS AAADVAGIGSSVG
+
+#COUNTING CHARACTERS
+print("Original DNA Sequence:",dna_seq)
+Original DNA Sequence: ATGCCGACGATAGCAGATGACAGTAGACAGAT
+
+count_A=dna_seq.count("A")
+>>>print("A:",count_A)
+A: 12
+
+count_T=dna_seq.count("T")
+>>>print("T:",count_T)
+T: 5
+
+#FINDING THE INDEX OF A SUB-STRING
+Substring_index=dna_seq.find("ATA")
+Substring_index
+9
+
+#CASE CONVERSION - UPPER TO LOWER
+lower_seq=dna_seq.lower()
+>>>print("Lowercase of Sequence:",lower_seq)
+Lowercase of Sequence: atgccgacgatagcagatgacagtagacagat
+
+upper_seq=lower_seq.upper()
+>>>print("Uppercase of seq:",upper_seq)
+Uppercase of seq: ATGCCGACGATAGCAGATGACAGTAGACAGAT
+
+#REPLACING A SUB-STRING WITH ANOTHER SUB-STRING
+replace_seq=dna_seq.replace('AT','XX')
+replace_seq
+XXGCCGACGXXAGCAGXXGACAGTAGACAGXX
+
+#PRACTISE
+# Define a DNA sequence
+dna_sequence = "AGCTTAGCGAATTCGCGTATGCGTAGC"
+
+# Indexing: Accessing individual nucleotides
+first_base = dna_sequence[0]  # First nucleotide
+fifth_base = dna_sequence[4]  # Fifth nucleotide
+
+# Slicing: Extracting a subsequence
+first_five_bases = dna_sequence[:5]  # First five nucleotides
+middle_sequence = dna_sequence[5:15]  # Nucleotides from position 5 to 14
+last_five_bases = dna_sequence[-5:]  # Last five nucleotides
+
+# Printing the results
+print(f"DNA Sequence: {dna_sequence}")
+print(f"First nucleotide: {first_base}")
+print(f"Fifth nucleotide: {fifth_base}")
+print(f"First five nucleotides: {first_five_bases}")
+print(f"Middle sequence (positions 5 to 14): {middle_sequence}")
+print(f"Last five nucleotides: {last_five_bases}")
+
+# Output or Results
+DNA Sequence: AGCTTAGCGAATTCGCGTATGCGTAGC
+First nucleotide: A
+Fifth nucleotide: T
+First five nucleotides: AGCTT
+Middle sequence (positions 5 to 14): AGCGAATTCG
+Last five nucleotides: GTAGC
