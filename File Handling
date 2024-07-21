@@ -1,0 +1,279 @@
+#File handling in Python is the way we work with files on our computer to read, write, or modify them.
+#BASIC OPERATIONS
+
+# Opening a File:
+"""
+The key function for working with files in Python is the open() function.
+The open() function takes two parameters; filename, and mode.
+Use the open() function: 'file = open('filename', 'mode')'
+There are four different methods (modes) for opening a file:
+"r" - Read - Default value. Opens a file for reading, error if the file does not exist
+"a" - Append - Opens a file for appending, creates the file if it does not exist
+"w" - Write - Opens a file for writing, creates the file if it does not exist
+"x" - Create - Creates the specified file, returns an error if the file exists
+In addition you can specify if the file should be handled as binary or text mode
+"t" - Text - Default value. Text mode
+"b" - Binary - Binary mode (for non-text files e.g. images)
+"""
+SYNTAX:
+f = open("demofile.txt")      OR
+f = open("demofile.txt", "rt")    #Because "r" for read, and "t" for text are the default values, you do not need to specify them.
+
+# Reading from a File:
+"""
+Use methods like read(), readline(), or readlines().
+EXAMPLE:
+f = open("demofile.txt", "r")
+print(f.read())
+OR
+f = open("D:\\myfiles\welcome.txt", "r")      #If the file is located in a different location, you will have to specify the file path, like this
+print(f.read())
+OR
+with open('example.txt', 'r') as file:
+    f = file.read()
+print(f)
+
+By default the read() method returns the whole text, but you can also specify how many characters you want to return:
+f = open("demofile.txt", "r")
+print(f.read(5))                #Return the 5 first characters of the file
+
+You can return one line by using the readline() method:
+f = open("demofile.txt", "r")
+print(f.readline())            #Read one line of the file
+By calling readline() two times, you can read the two first lines:
+f = open("demofile.txt", "r")
+print(f.readline())
+print(f.readline())            #Read two lines of the file
+
+By looping through the lines of the file, you can read the whole file, line by line:
+f = open("demofile.txt", "r")
+for x in f:
+  print(x)                    #Loop through the file line by line
+
+# EXAMPLE
+Assume 'file.txt' contains the following lines:
+Hello, World!
+This is a test file.
+It has multiple lines.
+
+Opening a File with 'with' Statement:
+with open("file.txt") as file:
+    for line in file:
+        print(line.strip())
+NOTE: 'with' is a context manager that ensures the file is properly closed after its suite finishes, even if an exception is raised.
+open("file.txt"): Opens the file located in file.txt in read mode by default.
+for line in file: The loop iterates over each line in the file. In text mode, the file object is an iterator that yields each line in the file.
+line.strip(): The strip() method removes any leading and trailing whitespace characters, including the newline character (\n), from the line.
+print(line.strip()): Prints the processed line to the console.
+The output of the provided code would be:
+Hello, World!
+This is a test file.
+It has multiple lines.
+
+It is a good practice to always close the file when you are done with it:
+f = open("demofile.txt", "r")
+print(f.readline())
+f.close()                    #Close the file when you are finish with it
+Use file.close() to close the file.
+Using 'with open(...) as file': automatically closes the file when the block ends.
+"""
+
+# Writing to a File:
+"""
+Use write() or writelines() methods.
+To write to an existing file, you must add a parameter to the open() function:
+"a" - Append - will append to the end of the file
+"w" - Write - will overwrite any existing content
+
+EXAMPLE
+Open the file "demofile2.txt" and append content to the file:
+f = open("demofile2.txt", "a")
+f.write("Now the file has more content!")
+f.close()
+#open and read the file after the appending:
+f = open("demofile2.txt", "r")
+print(f.read())
+
+Open the file "demofile3.txt" and overwrite the content:
+f = open("demofile3.txt", "w")
+f.write("Woops! I have deleted the content!")
+f.close()
+#open and read the file after the overwriting:
+f = open("demofile3.txt", "r")
+print(f.read())
+OR ANOTHER SYNTAX
+with open('example.txt', 'w') as file:
+    file.write("Hello, world!")
+Note: the "w" method will overwrite the entire file.
+ANOTHER EXAMPLE
+with open("ex.fasta", "w") as file:
+  file.write(">seq1 \n ATCGTAGACGATAACAG")
+"""
+
+# Create a New File:
+"""
+To create a new file in Python, use the open() method, with one of the following parameters:
+"x" - Create - will create a file, returns an error if the file exist
+"a" - Append - will create a file if the specified file does not exist
+"w" - Write - will create a file if the specified file does not exist
+EXAMPLE:
+Create a file called "myfile.txt":
+f = open("myfile.txt", "x")
+OR
+f = open("myfile.txt", "w")
+"""
+
+# Closing a File:
+"""
+It’s important to close a file after you’re done with it to free up system resources.
+Use file.close().
+Using with open(...) as file: automatically closes the file when the block ends.
+"""
+
+# Delete a File
+"""
+To delete a file, you must import the OS module, and run its os.remove() function:
+EXAMPLE
+import os
+os.remove("demofile.txt")        #Remove the file "demofile.txt"
+
+To avoid getting an error, you might want to check if the file exists before you try to delete it.
+Check if file exists, then delete it:
+import os
+if os.path.exists("demofile.txt"):
+  os.remove("demofile.txt")
+else:
+  print("The file does not exist")
+
+To delete an entire folder, use the os.rmdir() method:
+import os
+os.rmdir("myfolder")            #Remove the folder "myfolder"
+Note: You can only remove empty folders.
+"""
+
+#NOTE:
+"""
+The os.listdir() method in Python is used to get the list of all files and directories in the specified directory.
+The os.mkdir("CADD4") is used in Python to create a new directory named "CADD4" in the current working directory. 
+The os.rmdir() function is used to delete an empty directory.
+The os. getcwd returns the current working directory.
+The os.path.dirname() method in Python is used to retrieve the directory name from a specified path.
+"""
+
+# Error/Exception Handling:
+"""
+The 'try' block lets you test a block of code for errors.
+The 'except' block lets you handle the error.
+The 'else' block lets you execute code when there is no error.
+The 'finally' block lets you execute code, regardless of the result of the try- and except blocks.
+
+When an error occurs, or exception as we call it, Python will normally stop and generate an error message.
+These exceptions can be handled using the try statement:
+The try block will generate an exception, because x is not defined:
+try:
+  print(x)
+except:
+  print("An exception occurred")
+Since the try block raises an error, the except block will be executed.
+Without the try block, the program will crash and raise an error
+
+You can define as many exception blocks as you want, e.g. if you want to execute a special block of code for a special kind of error:
+Example
+Print one message if the try block raises a NameError and another for other errors:
+try:
+  print(x)
+except NameError:
+  print("Variable x is not defined")
+except:
+  print("Something else went wrong")
+>>> Variable x is not defined
+
+You can use the else keyword to define a block of code to be executed if no errors were raised:
+Example
+In this example, the try block does not generate any error:
+try:
+  print("Hello")
+except:
+  print("Something went wrong")
+else:
+  print("Nothing went wrong")
+>>> Hello
+    Nothing went wrong
+
+The finally block, if specified, will be executed regardless if the try block raises an error or not.
+Example
+try:
+  print(x)
+except:
+  print("Something went wrong")
+finally:
+  print("The 'try except' is finished")
+>>> Something went wrong
+    The 'try except' is finished
+
+#The try block will raise an error when trying to write to a read-only file:
+try:
+  f = open("demofile.txt")
+  try:
+    f.write("Lorum Ipsum")
+  except:
+    print("Something went wrong when writing to the file")
+  finally:
+    f.close()
+except:
+  print("Something went wrong when opening the file")  
+>>> Something went wrong when writing to the file
+
+# Raise an exception
+As a Python developer you can choose to throw an exception if a condition occurs.
+To throw (or raise) an exception, use the raise keyword.
+Example
+Raise an error and stop the program if x is lower than 0:
+x = -1
+if x < 0:
+  raise Exception("Sorry, no numbers below zero")
+
+Raise a TypeError if x is not an integer:
+x = "hello"
+if not type(x) is int:
+  raise TypeError("Only integers are allowed")
+"""
+
+#TO IMPORT A CSV FILE
+import csv
+with open("/content/test_scores.csv",newline='') as csvfile:
+  data=csv.reader(csvfile,delimiter='\t')
+  for row in data:
+    print(','.join(row))
+#OUTPUT
+Class, Score
+Class_A, 78
+Class_A, 85
+Class_B, 92
+Class_A, 76
+Class_B, 88
+Class_A, 80
+Class_B, 95
+Class_B, 87
+Class_A, 82
+Class_B, 90
+
+#PRACTISE
+import os
+# Step 1: Create and Write to File "demo1.txt"
+with open("demo1.txt", "w") as file_one:
+    file_one.write("This is the content of the first file.\n")
+    file_one.write("It contains some details about a CADD project.\n")
+
+# Step 2: Create File "demo2.txt"
+# This step is actually integrated into Step 3 where we open the file in write mode.
+
+# Step 3: Copy Contents from "demo1.txt" to "demo2.txt"
+with open("demo1.txt", "r") as file_one:
+    content = file_one.read()
+
+with open("demo2.txt", "w") as file_two:
+    file_two.write(content)
+
+# Step 4: Remove "demo1.txt"
+os.remove("demo1.txt")
