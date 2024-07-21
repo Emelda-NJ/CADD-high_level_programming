@@ -1,0 +1,229 @@
+# Data manipulation in Python refers to the process of transforming or analyzing data to make it more useful.
+
+# Importing Libraries:
+Using libraries like pandas and numpy, provides powerful tools for data manipulation.
+# To install Pandas use:
+pip install pandas
+# Two main structures used in Pandas are series- 1 Dimensional array and dataframe- 2 Dimensional array
+
+import pandas as pd
+mylist=[1,7,2]
+mylist
+myvar=pd.Series(mylist)
+print(myvar)
+# output
+0    1
+1    7
+2    2
+dtype: int64
+Note: The first column is the index number
+
+Also if we use 'pd.Series(mylist)' instead of 'print(myvar)' we will get similar results
+import pandas as pd
+mylist=[1,7,2]
+mylist
+myvar=pd.Series(mylist)
+pd.Series(mylist)
+# output
+0    1
+1    7
+2    2
+dtype: int64
+
+If you want to use a different indexing pattern, you can use:
+import pandas as pd
+mylist=[1,7,2]
+mylist
+myvar=pd.Series(mylist)
+pd.Series(mylist)
+pd.Series(mylist,index=["x","Y","Z"])
+# output
+x    1
+Y    7
+Z    2
+dtype: int64
+
+import pandas as pd
+import csv
+import numpy as np
+s=pd.Series([1,2,3,4,5,6,7])
+print(s)
+# output
+0    1
+1    2
+2    3
+3    4
+4    5
+5    6
+6    7
+dtype: int64
+
+# Loading Data:
+Data is usually stored in files like CSV, Excel, or databases. You can load this data into Python using pandas.
+Example: data = pd.read_csv('data.csv')
+OR By importing csv and opening the csv file
+
+# how to create, write to, and read from a CSV file in Python
+import csv
+# reading csv
+with open("/content/gene_expression_data.csv","r") as file:
+  reader=csv.reader(file)
+  for line in reader:
+    print(line)
+# output
+['Gene', ' Sample1', ' Sample2', ' Sample3', ' Sample4']
+['Gene_A', ' 2.5', ' 3.0', ' 1.8', ' 2.2']
+['Gene_B', ' 1.8', ' 2.0', ' 1.5', ' 1.9']
+['Gene_C', ' 3.2', ' 2.8', ' 3.5', ' 3.0']
+['Gene_D', ' 1.5', ' 1.7', ' 1.3', ' 1.6']
+['Gene_E', ' 2.0', ' 2.5', ' 2.2', ' 2.8']
+
+# Writing to CSV file
+data=[['Name','age','City'],
+      ['raj','25','Mumbai'],
+      ['Shyam','30','Pune'],
+      ['Myra','10','Bangalore']]        #Creates a list of lists, where each inner list represents a row of data.
+print(data)            #Prints the data list to the console.
+# output
+[['Name', 'age', 'City'], ['raj', '25', 'Mumbai'], ['Shyam', '30', 'Pune'], ['Myra', '10', 'Bangalore']]
+
+with open("output.csv","w",newline="") as file:    #Opens a file named output.csv in write mode ("w"). The newline="" argument is used to ensure that newlines are handled correctly on different platforms.
+  writer=csv.writer(file)      #Creates a CSV writer object.
+  writer.writerows(data)        #Using the csv.writer object, the code writes the data list to a file named output.csv.
+
+file=open("output.csv")          #Opens the output.csv file in read mode.
+print(file.read())               #Reads the entire content of the file and prints it to the console.
+# output
+Name,age,City
+raj,25,Mumbai
+Shyam,30,Pune
+Myra,10,Bangalore
+
+# creating a dictionary
+import pandas as pd
+data={'Name':['raj','Shyam','Myra'],
+      'Age':[20,40,39],
+      'City':['A','B','C']}
+type(data)        #dict
+data
+# output
+{'Name': ['raj', 'Shyam', 'Myra'],
+ 'Age': [20, 40, 39],
+ 'City': ['A', 'B', 'C']}
+
+df=pd.DataFrame(data)        #This line converts the data dictionary into a Pandas DataFrame.
+df          #This line displays the DataFrame in a tabular format.
+# output
+  Name	Age	City
+0	raj	  20	A
+1	Shyam	40	B
+2	Myra	39	C
+type(df)      #pandas.core.frame.DataFrame
+
+print(df.iloc[:2])
+# output
+   Name  Age City
+0    raj   20    A
+1  Shyam   40    B
+The code snippet you provided uses the iloc method from the Pandas library to select and print the first two rows of the DataFrame df. 
+df.iloc allows integer-location based indexing for selection by position.
+[:2]: This is a slice notation that selects the rows from the start up to (but not including) index 2.
+
+# Selecting a Single Column Using Bracket Notation
+print(df['Name'])      #This line of code selects the 'Name' column from the DataFrame df and prints it.
+0      raj
+1    Shyam
+2     Myra
+Name: Name, dtype: object
+
+# Selecting a Single Column Using Attribute Notation
+df.City          #This line of code selects the 'City' column from the DataFrame df and prints it.
+0    A
+1    B
+2    C
+Name: City, dtype: object
+
+# PRACTISE - CREATING RANDOM DATA
+# Importing Required Libraries
+import numpy as np
+import pandas as pd
+# Setting the Random Seed
+np.random.seed(0)      #Setting the seed ensures reproducibility of the random numbers generated. This means that every time you run the code, you will get the same random numbers.
+# Generating Random Gene Expression Data
+gene_expression = np.random.rand(5, 4) * 100    #Generates a 5x4 array of random numbers between 0 and 1, and Multiplying by 100 scales these numbers to be between 0 and 100.
+gene_expression
+# Output
+array([[54.88135039, 71.51893664, 60.27633761, 54.4883183 ],
+       [42.36547993, 64.58941131, 43.75872113, 89.17730008],
+       [96.36627605, 38.34415188, 79.17250381, 52.88949198],
+       [56.80445611, 92.55966383,  7.10360582,  8.71292997],
+       [ 2.02183974, 83.26198455, 77.81567509, 87.00121482]])
+# Defining Gene and Sample Labels
+genes = ['Gene1', 'Gene2', 'Gene3', 'Gene4', 'Gene5']
+samples = ['Sample1', 'Sample2', 'Sample3', 'Sample4']
+# Creating the DataFrame
+df_expression = pd.DataFrame(gene_expression, index=genes, columns=samples)    #Creates a DataFrame with gene_expression as the data, genes as the row labels (index), and samples as the column labels.
+print(df_expression)
+# Final Output
+           Sample1    Sample2    Sample3    Sample4
+Gene1  54.881350   71.518937   60.276338   54.488318
+Gene2  42.365480   64.589411   43.758721   89.177300
+Gene3  96.366276   38.344152   79.172504   52.889492
+Gene4  56.804456   92.559664    7.103606    8.712930
+Gene5   2.021840   83.261985   77.815675   87.001215
+
+# Writing DataFrame to Excel
+df.to_excel('df_expression.xlsx', index=False)    #This method writes the DataFrame df to an Excel file named df_expression.xlsx. The index=False parameter ensures that the row indices are not written to the Excel file.
+# Reading DataFrame from Excel
+df_excel = pd.read_excel('/content/df_expression.xlsx')    #reads the Excel file df_expression.xlsx and stores the content in a new DataFrame named df_excel.
+print(df_excel)      #Prints the content of df_excel.
+# Output
+DataFrame read from Excel:
+     Sample1    Sample2    Sample3    Sample4
+0  54.881350  71.518937  60.276338  54.488318
+1  42.365480  64.589411  43.758721  89.177300
+2  96.366276  38.344152  79.172504  52.889492
+3  56.804456  92.559664   7.103606   8.712930
+4   2.021840  83.261985  77.815675  87.001215
+
+# Creating a Date Range
+date = pd.date_range('20240712', periods=10)      #creates a sequence of 10 dates starting from July 12, 2024.
+date        #holds the generated date range.
+# Output
+The date variable will hold a DatetimeIndex object with the following dates:
+Date range:
+DatetimeIndex(['2024-07-12', '2024-07-13', '2024-07-14', '2024-07-15',
+               '2024-07-16', '2024-07-17', '2024-07-18', '2024-07-19',
+               '2024-07-20', '2024-07-21'],
+              dtype='datetime64[ns]', freq='D')
+
+
+# OTHER FORMS OF DATA MANIPULATION
+"""
+Exploring Data:
+Check the first few rows of the data using data.head() to understand what it looks like.
+Get basic information using data.info() and data.describe().
+
+Cleaning Data:
+Handle missing values by removing them or filling them with a default value.
+Example: data.dropna() removes rows with missing values.
+Remove duplicates using data.drop_duplicates().
+
+Transforming Data:
+Rename columns for clarity using data.rename(columns={'old_name': 'new_name'}).
+Change data types using data['column'] = data['column'].astype('new_type').
+Create new columns based on existing ones.
+Example: data['new_column'] = data['column1'] + data['column2'].
+
+Filtering Data:
+Select specific rows based on conditions.
+Example: filtered_data = data[data['column'] > value].
+
+Aggregating Data:
+Summarize data using functions like mean, sum, count, etc.
+Example: data.groupby('column').sum() groups the data by a column and calculates the sum for each group.
+
+Merging Data:
+Combine data from different sources using joins.
+Example: merged_data = pd.merge(data1, data2, on='common_column').
+"""
