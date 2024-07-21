@@ -1,0 +1,254 @@
+"""
+Control flow refers to the sequence a program will follow during its execution.
+The control flow of a Python program is regulated by conditional statements, loops, and function calls.
+There are three types of control structures in Python:
+Sequential - The default working of a program. It is a set of statements whose execution process happens in a sequence. 
+            The problem with sequential statements is that if the logic has broken in any one of the lines, then the complete source code execution will break.
+Selection/Decision - Also referred to as branching statements or Decision control statements. This structure is used for making decisions by checking conditions and branching
+             There can be many forms of decision control structures. Some of the most commonly used control structures are: Only if, if-else, The nested if and The complete if-elif-else
+Repetition - This structure is used for looping, i.e., repeatedly executing a certain piece of a code block. 
+            There are generally two loop statements to implement the repetition structure: The for loop and The while loop
+"""
+
+#CONDITIONAL STATEMENTS
+Conditional statements execute code based on whether a condition is true or false.
+
+#if statement: Executes a block of code if a specified condition is true.
+#SYNTAX: if condition:
+            # code block
+x = 10
+if x > 5:
+    print("x is greater than 5")
+If x is greater than 5, the message is printed.
+
+i=10
+if (i<15):
+  print("It is true")
+print("Have a nice day!!")
+>>>It is true
+  Have a nice day!!
+
+#if-else statement: Executes one block of code if a condition is true, and another block if the condition is false.
+#SYNTAX: if condition:
+            # code block
+        else:
+            # alternate code block
+x = 4
+if x > 5:
+    print("x is greater than 5")
+else:
+    print("x is not greater than 5")
+If x is not greater than 5, the else block is executed.
+
+i=10
+if(i>15):
+  print("10 is less than 15")
+else:
+  print("Given number is greater")
+print("Have a nice day!!")
+>>>Given number is greater
+    Have a nice day!!
+
+number=int(input("Enter a number:"))      #taking input
+if number%2==0:
+  print(f"{number} is Even")
+else:
+  print(f"{number} is Odd")
+>>>Enter a number:20
+    20 is Even
+
+mol_wt=450    #mol.wt for drug
+min_wt=200    #minimum
+max_wt=500    #maximum
+if min_wt <= mol_wt <=max_wt:
+  print("the mol.wt is within range")
+else:
+  print("Outside the desirable range")
+>>>the mol.wt is within range
+
+mol_wt=int(input("Enter a Molecular weight:"))    #taking input
+min_wt=200    #minimum
+max_wt=500    #maximum
+if min_wt <= mol_wt <=max_wt:
+  print("the mol.wt is within range")
+else:
+  print("Outside the desirable range")
+>>> Enter a Molecular weight:100
+    Outside the desirable range
+
+#if-elif-else statement: Checks multiple conditions sequentially and executes corresponding code blocks.
+SYNTAX: if condition1:
+          # code block
+       elif condition2:
+          # another code block
+      else:
+          # fallback code block
+x = 5
+if x > 5:
+    print("x is greater than 5")
+elif x == 5:
+    print("x is 5")
+else:
+    print("x is less than 5")
+>>>x is 5
+
+x=55
+if x%2==0:
+  print("x is divisible by 2")
+elif x%3==0:
+  print("x is divisible by 3")
+else:
+  print("x is neither devisible by 2 or 3")
+>>>x is neither devisible by 2 or 3
+
+#LOOPING STATEMENTS
+Loops repeat a block of code multiple times.
+
+#for loop: Iterates over a sequence (like a list, tuple, or range) and executes a block of code for each item.
+#SYNTAX: for item in sequence:
+              # code block
+fruits = ["apple", "banana", "cherry"]
+for fruit in fruits:
+    print(fruit)
+This loop iterates over each item in the list 'fruits'.
+
+dna_seq=["ATCGTGACGT","ATACAG","ACAGCAGACAGTAGACAGT","ACAG"]
+for sequence in dna_seq:
+  seq_len=len(sequence)
+  print(sequence)
+  print(seq_len)
+>>> ATCGTGACGT
+    10
+    ATACAG
+    6
+    ACAGCAGACAGTAGACAGT
+    19
+    ACAG
+    4
+dna_seq[1]    #ATACAG
+
+#while loop: Repeats a block of code as long as a specified condition is true.
+#SYNTAX: while condition:
+              # code block
+count = 1
+while count <= 5:
+    print(count)
+    count += 1
+This loop continues as long as the condition (count <= 5) is true.
+
+i=1
+while i <10:
+  print(i)
+  i+=1
+>>> 1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+
+"""
+The code iterates through the list of molecular weights, checks if each weight falls within the specified range (200 to 500), and counts how many do. 
+It then prints the count of molecular weights that are within the range.
+"""
+mol_wt=[450,150,250,300,450,550,600]    #A list named 'mol_wt', containing molecular weights of drugs
+min_wt=200              #Variables 'min_wt' and 'max_wt' set the range (200 to 500) for acceptable molecular weights.
+max_wt=500
+count_within_range=0      #Initialized to 0. This variable will keep track of how many molecular weights fall within the specified range.
+index=0                   #Initialized to 0. This variable will be used to traverse through the mol_wt list.
+while index < len(mol_wt):          #The loop runs as long as index is less than the length of the mol_wt list.
+  if min_wt<=mol_wt[index]<=max_wt:      #checks if the current molecular weight (mol_wt[index]) is within the range specified by min_wt and max_wt.
+    count_within_range+=1            #If the condition is true, it increments count_within_range by 1.
+  index+=1                  #The index is incremented by 1 to move to the next element in the list.
+print(f"The no. of mol.wt within range is:{count_within_range}")    #After the loop finishes, the code prints the total number of molecular weights within the specified range.
+>>>The no. of mol.wt within range is:4
+
+#CONTROL FLOW TOOLS
+These include statements that modify the flow of loops.
+
+#break statement: Exits the nearest enclosing loop immediately.
+SYNTAX: for item in sequence:
+            if condition:
+                break
+for i in range(10):
+  if i ==5:
+    print("Breaking the loop at i:",i)
+    break
+  print(i)
+This loop stops when i equals 5.
+>>> 0
+    1
+    2
+    3
+    4
+    Breaking the loop at i: 5
+
+while True:
+  age=int(input("Enter age:"))
+  if age >=18:
+    print("You are eligible")
+    break
+  else:
+    print("You are not old enough")
+>>> Enter age:10
+    You are not old enough
+    Enter age:15
+    You are not old enough
+    Enter age:40
+    You are eligible
+
+#continue statement: Skips the rest of the code inside the current loop iteration and proceeds to the next iteration.
+SYNTAX: for item in sequence:
+            if condition:
+                continue
+            # code block
+for i in range(10):
+    if i == 5:
+        continue
+    print(i)
+This skips the iteration when i equals 5, continuing with the next iteration.
+>>> 0
+    1
+    2
+    3
+    4
+    6
+    7
+    8
+    9
+
+for i in range(10):
+  if i ==3:
+    #print("Skipping iteration at i",i)
+    continue
+  print(i)
+>>> 0
+    1
+    2
+    4
+    5
+    6
+    7
+    8
+    9
+
+#pass statement: Does nothing and can be used as a placeholder for future code
+SYNTAX: for item in sequence:
+            pass  # Placeholder
+for i in range(5):
+    pass  # Placeholder for future code
+This does nothing and is used as a placeholder.
+
+#else with loops: Executes a block of code after the loop finishes normally (without encountering a break).
+SYNTAX: for item in sequence:
+            # code block
+        else:
+            # code block if no break
+for i in range(5):
+    print(i)
+else:
+    print("Loop finished without break")
+The else block runs if the loop completes without encountering a break.
